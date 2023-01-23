@@ -1,0 +1,23 @@
+project:
+  type: book
+
+book:
+  title: "Statistical Rethinking 2023"
+  author: "Savannah Hammerton"
+  date: "1/23/2023"
+  chapters:
+    - index.qmd
+    - homework1.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

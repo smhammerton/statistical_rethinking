@@ -1,0 +1,50 @@
+# Homework 1
+
+
+1. Suppose the globe tossing data (Lecture 2, Chapter 2) had turned out to
+be 4 water and 11 land. Construct the posterior distribution.
+
+```{r}
+# function to compute posterior distribution 
+compute_posterior <- function(the_sample, poss = c(0, 0.25, 0.5, 0.75, 1)) {
+  w <- sum(the_sample == "w") #number of w observed 
+  l <- sum(the_sample == "l") #number of l observed 
+  ways <- 
+  sapply(p, function(q) (q*4)^w * ((1-q)*4)^l)
+  post <- ways/sum(ways)
+  data.frame(post, ways, poss)
+}
+
+# Set our sample and possibilities 
+the_sample <- sample(c(rep("w", 4), rep("l", 11))) #4 water and 11 land random
+p <- seq(0, 1, 0.01) # 1000 possible proportions
+
+answer <- compute_posterior(the_sample = the_sample, poss = p)
+
+answer |> 
+  ggplot2::ggplot(ggplot2::aes(x = poss, y = post)) +
+  ggplot2::geom_line() +
+  ggplot2::labs(x = "potential proportions",
+                y = "probability")
+```
+
+
+2. Using the posterior distribution from 1, compute the posterior predictive
+distribution for the next 5 tosses of the same globe. I recommend you use
+the sampling method.
+
+```{r}
+
+```
+
+
+3. Use the posterior predictive distribution from 2 to calculate the probability
+of 3 or more water samples in the next 5 tosses.
+
+
+4. (OPTIONAL) This problem is an optional challenge for people who are
+taking the course for a second or third time. Suppose you observe W = 5
+water points, but you forgot to write down how many times the globe was
+tossed, so you don’t know the number of land points L. Assume that p = 0:7
+and compute the posterior distribution of the number of tosses N. Hint: Use
+the binomial distribution.
